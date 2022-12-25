@@ -1,0 +1,149 @@
+== Minute 1 ==
+No valves are open.
+Total released pressure is now 0; expected end total is 0.
+You move to valve DD.
+
+== Minute 2 ==
+No valves are open.
+Total released pressure is now 0; expected end total is 0.
+You open valve DD.
+
+== Minute 3 ==
+Valve DD is open, releasing 20 pressure.
+Total released pressure is now 20; expected end total is 560.
+You move to valve CC.
+
+== Minute 4 ==
+Valve DD is open, releasing 20 pressure.
+Total released pressure is now 40; expected end total is 560.
+You move to valve BB.
+
+== Minute 5 ==
+Valve DD is open, releasing 20 pressure.
+Total released pressure is now 60; expected end total is 560.
+You open valve BB.
+
+== Minute 6 ==
+Valves BB and DD are open, releasing 33 pressure.
+Total released pressure is now 93; expected end total is 885.
+You move to valve AA.
+
+== Minute 7 ==
+Valves BB and DD are open, releasing 33 pressure.
+Total released pressure is now 126; expected end total is 885.
+You move to valve II.
+
+== Minute 8 ==
+Valves BB and DD are open, releasing 33 pressure.
+Total released pressure is now 159; expected end total is 885.
+You move to valve JJ.
+
+== Minute 9 ==
+Valves BB and DD are open, releasing 33 pressure.
+Total released pressure is now 192; expected end total is 885.
+You open valve JJ.
+
+== Minute 10 ==
+Valves BB, DD, and JJ are open, releasing 54 pressure.
+Total released pressure is now 246; expected end total is 1326.
+You move to valve II.
+
+== Minute 11 ==
+Valves BB, DD, and JJ are open, releasing 54 pressure.
+Total released pressure is now 300; expected end total is 1326.
+You move to valve AA.
+
+== Minute 12 ==
+Valves BB, DD, and JJ are open, releasing 54 pressure.
+Total released pressure is now 354; expected end total is 1326.
+You move to valve DD.
+
+== Minute 13 ==
+Valves BB, DD, and JJ are open, releasing 54 pressure.
+Total released pressure is now 408; expected end total is 1326.
+You move to valve EE.
+
+== Minute 14 ==
+Valves BB, DD, and JJ are open, releasing 54 pressure.
+Total released pressure is now 462; expected end total is 1326.
+You move to valve FF.
+
+== Minute 15 ==
+Valves BB, DD, and JJ are open, releasing 54 pressure.
+Total released pressure is now 516; expected end total is 1326.
+You move to valve GG.
+
+== Minute 16 ==
+Valves BB, DD, and JJ are open, releasing 54 pressure.
+Total released pressure is now 570; expected end total is 1326.
+You move to valve HH.
+
+== Minute 17 ==
+Valves BB, DD, and JJ are open, releasing 54 pressure.
+Total released pressure is now 624; expected end total is 1326.
+You open valve HH.
+
+== Minute 18 ==
+Valves BB, DD, HH, and JJ are open, releasing 76 pressure.
+Total released pressure is now 700; expected end total is 1612.
+You move to valve GG.
+
+== Minute 19 ==
+Valves BB, DD, HH, and JJ are open, releasing 76 pressure.
+Total released pressure is now 776; expected end total is 1612.
+You move to valve FF.
+
+== Minute 20 ==
+Valves BB, DD, HH, and JJ are open, releasing 76 pressure.
+Total released pressure is now 852; expected end total is 1612.
+You move to valve EE.
+
+== Minute 21 ==
+Valves BB, DD, HH, and JJ are open, releasing 76 pressure.
+Total released pressure is now 928; expected end total is 1612.
+You open valve EE.
+
+== Minute 22 ==
+Valves BB, DD, EE, HH, and JJ are open, releasing 79 pressure.
+Total released pressure is now 1007; expected end total is 1639.
+You move to valve DD.
+
+== Minute 23 ==
+Valves BB, DD, EE, HH, and JJ are open, releasing 79 pressure.
+Total released pressure is now 1086; expected end total is 1639.
+You move to valve CC.
+
+== Minute 24 ==
+Valves BB, DD, EE, HH, and JJ are open, releasing 79 pressure.
+Total released pressure is now 1165; expected end total is 1639.
+You open valve CC.
+
+== Minute 25 ==
+Valves BB, CC, DD, EE, HH, and JJ are open, releasing 81 pressure.
+Total released pressure is now 1246; expected end total is 1651.
+You move to valve DD.
+
+== Minute 26 ==
+Valves BB, CC, DD, EE, HH, and JJ are open, releasing 81 pressure.
+Total released pressure is now 1327; expected end total is 1651.
+You move to valve EE.
+
+== Minute 27 ==
+Valves BB, CC, DD, EE, HH, and JJ are open, releasing 81 pressure.
+Total released pressure is now 1408; expected end total is 1651.
+You move to valve FF.
+
+== Minute 28 ==
+Valves BB, CC, DD, EE, HH, and JJ are open, releasing 81 pressure.
+Total released pressure is now 1489; expected end total is 1651.
+You move to valve GG.
+
+== Minute 29 ==
+Valves BB, CC, DD, EE, HH, and JJ are open, releasing 81 pressure.
+Total released pressure is now 1570; expected end total is 1651.
+You move to valve HH.
+
+== Minute 30 ==
+Valves BB, CC, DD, EE, HH, and JJ are open, releasing 81 pressure.
+Total released pressure is now 1651; expected end total is 1651.
+
