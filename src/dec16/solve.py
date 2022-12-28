@@ -59,7 +59,7 @@ def a():
     def search():
         q = collections.deque([(initial_state, ())])
 
-        seen = set()
+        seen = {}
         best = (0, [])
 
         while q:
@@ -75,14 +75,22 @@ def a():
                 q.append((open(s), (*path, s.at)))
 
             for v in useful_valves:
-                if v in s.open or v == s.at:
+                if (
+                    v in s.open
+                    or v == s.at
+                    or s.time_left < steps_between(s.at, v)
+                ):
                     continue
 
-                if s.time_left - steps_between(s.at, v) > 0:
-                    p = (v, *path)
-                    if p not in seen:
-                        seen.add(p)
-                        q.append((move(s, v), path))
+                k = ",".join(sorted((*s.open, v)))
+                score = (
+                    s.score
+                    + (s.time_left - steps_between(s.at, v) - 1)
+                    * layout[v].rate
+                )
+                if seen.get(k, -1) < score:
+                    seen[k] = score
+                    q.append((move(s, v), path))
 
         return best
 
