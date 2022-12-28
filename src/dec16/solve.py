@@ -88,8 +88,7 @@ class State:
 
         elif any(
             isinstance(a, AtValve)
-            and a.at
-            in self.open | {v for v, c in layout.items() if c.rate == 0}
+            and (a.at in self.open or a.at not in useful_valves)
             for a in self.actors
         ):
             # there are actors standing at open (or useless) valves; initiate
@@ -162,17 +161,13 @@ class State:
             arrival,
             self.score,
             self.open,
-            [
-                AtValve(a.toward) if a.arrives == arrival else a
-                for a in self.actors
-                if isinstance(a, InTransit)
-            ],
+            [a.step_to(arrival) for a in self.actors],
             self.path,
         )
 
     def move_dupes(self, seen: dict[str, int]) -> Iterable["State"]:
         collisions = [
-            (i, a)
+            i
             for i, a in enumerate(self.actors)
             if isinstance(a, AtValve)
             and sum(
@@ -183,43 +178,24 @@ class State:
             > 1
         ]
         mover = collisions[0]
-        others = [a for i, a in enumerate(self.actors) if i != mover[0]]
-
-        for vnext in useful_valves:
-            if vnext in self.open | {
-                a.at if isinstance(a, AtValve) else a.toward
-                for a in self.actors
-            }:
-                continue
-            if not self.move_is_useful(
-                vnext, steps_between(mover[1].at, vnext), seen
-            ):
-                continue
-
-            actors = [
-                InTransit(
-                    vnext,
-                    self.time_left - steps_between(mover[1].at, vnext),
-                ),
-                *others,
-            ]
-            yield from State(
-                self.time_left,
-                self.score,
-                self.open,
-                actors,
-                self.path,
-            ).nexts(seen)
+        yield from self.move_one(mover, seen)
 
     def move_done(self, seen: dict[str, int]) -> Iterable["State"]:
         mover = next(
-            (i, a)
+            i
             for i, a in enumerate(self.actors)
             if isinstance(a, AtValve)
-            and a.at
-            in self.open | {v for v, c in layout.items() if c.rate == 0}
+            and (a.at in self.open or a.at not in useful_valves)
         )
-        others = [a for i, a in enumerate(self.actors) if i != mover[0]]
+        yield from self.move_one(mover, seen)
+
+    def move_one(
+        self, actor_index: int, seen: dict[str, int]
+    ) -> Iterable["State"]:
+        mover = self.actors[actor_index]
+        assert isinstance(
+            mover, AtValve
+        ), "can't move already travelling actor"
 
         for vnext in useful_valves:
             if vnext in self.open | {
@@ -228,24 +204,18 @@ class State:
             }:
                 continue
             if not self.move_is_useful(
-                vnext, steps_between(mover[1].at, vnext), seen
+                vnext, steps_between(mover.at, vnext), seen
             ):
                 continue
 
             actors = [
                 InTransit(
-                    vnext,
-                    self.time_left - steps_between(mover[1].at, vnext),
+                    vnext, self.time_left - steps_between(mover.at, vnext)
                 ),
-                *others,
+                *(a for i, a in enumerate(self.actors) if i != actor_index),
             ]
-
             yield from State(
-                self.time_left,
-                self.score,
-                self.open,
-                actors,
-                self.path,
+                self.time_left, self.score, self.open, actors, self.path
             ).nexts(seen)
 
     def move_is_useful(
@@ -255,6 +225,9 @@ class State:
         assert steps_away > 0
 
         if steps_away >= self.time_left:
+            return False
+
+        if layout[valve].rate == 0:
             return False
 
         k = ",".join(sorted(self.open | {valve}))
