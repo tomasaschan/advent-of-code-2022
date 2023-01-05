@@ -9,4 +9,4 @@ elif [[ ${3:-''} == "nodebug" ]]; then
     debug="2> /dev/null"
 fi
 
-find src/dec$day -type f -name '*.py' -or -name '*.txt' | entr -rc sh -c "./src/dec$day/solve.py < src/dec$day/$input.txt $debug"
+find src/dec$day -type f -name '*.py' -or -name '*.txt' | entr -rc sh -c "echo Running dec $day with $input.txt && ./src/dec$day/solve.py < src/dec$day/$input.txt $debug"
