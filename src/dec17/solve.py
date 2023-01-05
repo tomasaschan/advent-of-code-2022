@@ -43,35 +43,6 @@ def hash(cave: set[tuple[int, int]]) -> int:
     return sum((x + 7 * (y - zero) for x, y in cave), start=0)
 
 
-def show(cave, rock={}, header=None):
-    hi = max(top(cave), top(rock))
-    lines = [header] if header else []
-
-    lines.extend(
-        "".join(
-            [
-                "|",
-                "".join(
-                    "@" if (x, y) in rock else "#" if (x, y) in cave else "."
-                    for x in range(7)
-                ),
-                "| ",
-                str(y),
-            ]
-        )
-        for y in reversed(range(max(bottom(cave), top(cave) - 15), hi + 1))
-    )
-
-    return "\n".join(lines)
-
-
-def side_by_side(columns, *, width=30):
-    return "\n".join(
-        "".join(c.ljust(width) for c in cs)
-        for cs in zip(*(col.splitlines(keepends=False) for col in columns))
-    )
-
-
 def drop_rock(
     cave: set[tuple[int, int]],
     rock: set[tuple[int, int]],
@@ -126,7 +97,7 @@ def b():
 
         for n in range(20_000):
             t, cave = drop_rock(cave, shapes[n % len(shapes)], t, keep=keep)
-            k = (t % len(jets), n % len(shapes))
+            k = (t % len(jets), n % len(shapes), hash(cave))
 
             if k in seen.keys():
                 return (
@@ -152,29 +123,9 @@ def b():
 
         return t, cave
 
-    keep = 80
+    keep = 40
     cycle = find_cycle(keep=keep)
     _, cave = drop_without_cycle(1000000000000, cycle, keep=keep)
-
-    (n0, _), (n1, _) = cycle
-
-    print(
-        side_by_side(
-            (
-                *(
-                    show(
-                        drop_rocks(
-                            set(), (0, 0), n1 + c * (n1 - n0), keep=keep
-                        )[1],
-                        header=f"n = {n1 + c * (n1 - n0)} ({c})",
-                    )
-                    for c in range(5)
-                ),
-                show(cave, header="final"),
-            ),
-            width=20,
-        )
-    )
 
     return top(cave)
 
